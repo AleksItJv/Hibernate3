@@ -48,19 +48,23 @@ public class Main {
             System.out.println(clientLoop);
         }*/
 
-
         Mark mark1 = new Mark("Audi", "A5", "12000");
         Mark mark2 = new Mark("BMW", "X5", "15000");
+        Mark mark3 = new Mark("Lamba", "L13", "35000");
         markDAO.add(mark1);
         markDAO.add(mark2);
+        markDAO.add(mark3);
 
         Car car1 = new Car(1);
         Car car2 = new Car(2);
-        car1.setMark(mark1);
-        car2.setMark(mark2);
+        Car car3 = new Car(3);
+        Car car4 = new Car(1);
+        Car car5 = new Car(2);
         carDAO.add(car1);
         carDAO.add(car2);
-
+        carDAO.add(car3);
+        carDAO.add(car4);
+        carDAO.add(car5);
 
         for(Car c : carDAO.getAll()){
             System.out.println(c);
@@ -71,15 +75,13 @@ public class Main {
         //carDAO.removeCar(2);
 
         for(Car c : carDAO.getAll()){
-            System.out.println("id:" + c.getId() + " markId:" + c.getMarkId() + " " + c.getMark());
+            System.out.println("Car{" +
+                    "id=" + c.getId() +
+                    ", mark=" + c.getMark().getMark() +
+                    ", model=" + c.getMark().getModel() +
+                    ", price=" + c.getMark().getPrice() +
+                    '}');
         }
-
-/*        MarkHiDAO markHiDAO = new MarkHiDAO();
-        List<Car> markCars = markHiDAO.getCarList();
-
-        for (Car m : markCars) {
-            System.out.println(m.getMark().getPrice());
-        }*/
 
         HibernateUtil.shutdown();
 

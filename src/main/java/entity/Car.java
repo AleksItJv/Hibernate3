@@ -9,11 +9,12 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    @Column(name = "mark_id")
     private long markId;
 
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "mark_id")//, nullable = false)
+    @JoinColumn(name = "mark_id", referencedColumnName = "id", insertable = false, updatable = false)//, nullable = false)
     private Mark mark;
 
 
@@ -28,6 +29,10 @@ public class Car {
     public Car() { }
 
     public Car(long markId) {
+        this.markId = markId;
+    }
+
+    public Car(long markId, Mark mark) {
         this.markId = markId;
     }
 

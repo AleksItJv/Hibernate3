@@ -23,6 +23,19 @@ public class MarkHiDAO implements MarkDAO {
         session.close();
     }
 
+    @Override
+    public List<Mark> getAll() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        session.beginTransaction();
+
+        List<Mark> markList = session.createQuery("from Mark").list();
+
+        session.getTransaction().commit();
+        session.close();
+
+        return markList;
+    }
+
     //no read
     public List<Car> getCarList() {
         Session session = HibernateUtil.getSessionFactory().openSession();
